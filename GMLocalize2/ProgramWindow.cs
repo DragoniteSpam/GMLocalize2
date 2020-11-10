@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -32,6 +33,20 @@ namespace GMLocalize2 {
 
         private void listBox1_SelectedIndexChanged(object sender, EventArgs e) {
 
+        }
+
+        private void buttonOpen_Click(object sender, EventArgs e) {
+            using (OpenFileDialog finder = new OpenFileDialog()) {
+                finder.Filter = "GameMaker Studio 2 projects (*.yyp)|*.yyp";
+
+                if (finder.ShowDialog() == DialogResult.OK) {
+                    DirectoryInfo root = new DirectoryInfo(Path.GetDirectoryName(finder.FileName));
+                    int i = 0;
+                    foreach (FileInfo filename in root.GetFiles("*.gml", SearchOption.AllDirectories)) {
+                        /* behave */
+                    }
+                }
+            }
         }
     }
 }

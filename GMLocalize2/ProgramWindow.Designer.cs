@@ -38,6 +38,7 @@
             this.buttonOpen.TabIndex = 0;
             this.buttonOpen.Text = "Open Project";
             this.buttonOpen.UseVisualStyleBackColor = true;
+            this.buttonOpen.Click += new System.EventHandler(this.buttonOpen_Click);
             // 
             // buttonExport
             // 
