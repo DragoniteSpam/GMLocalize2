@@ -68,7 +68,7 @@ namespace GMLocalize2 {
                                 text = "";
                             }
                         } else {
-                            if (tokens[i] == localizeFunction) {
+                            if (tokens[i].Trim() == localizeFunction) {
                                 adding = true;
                                 i++;
                             }
