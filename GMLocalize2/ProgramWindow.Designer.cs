@@ -147,6 +147,7 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.buttonExport);
             this.Controls.Add(this.buttonOpen);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "ProgramWindow";
             this.Text = "GMLocalize";
             this.Load += new System.EventHandler(this.Form1_Load);
