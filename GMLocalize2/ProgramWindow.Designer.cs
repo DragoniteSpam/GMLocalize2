@@ -27,6 +27,8 @@
             this.buttonExport = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.listText = new System.Windows.Forms.ListBox();
+            this.buttonSortAZ = new System.Windows.Forms.Button();
+            this.buttonSortLength = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // buttonOpen
@@ -69,15 +71,39 @@
             this.listText.ItemHeight = 19;
             this.listText.Location = new System.Drawing.Point(12, 104);
             this.listText.Name = "listText";
-            this.listText.Size = new System.Drawing.Size(460, 327);
+            this.listText.Size = new System.Drawing.Size(460, 308);
             this.listText.TabIndex = 4;
             this.listText.SelectedIndexChanged += new System.EventHandler(this.listBox1_SelectedIndexChanged);
+            // 
+            // buttonSortAZ
+            // 
+            this.buttonSortAZ.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonSortAZ.Location = new System.Drawing.Point(12, 417);
+            this.buttonSortAZ.Name = "buttonSortAZ";
+            this.buttonSortAZ.Size = new System.Drawing.Size(128, 32);
+            this.buttonSortAZ.TabIndex = 5;
+            this.buttonSortAZ.Text = "Sort (A-Z)";
+            this.buttonSortAZ.UseVisualStyleBackColor = true;
+            this.buttonSortAZ.Click += new System.EventHandler(this.buttonSortAZ_Click);
+            // 
+            // buttonSortLength
+            // 
+            this.buttonSortLength.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonSortLength.Location = new System.Drawing.Point(146, 417);
+            this.buttonSortLength.Name = "buttonSortLength";
+            this.buttonSortLength.Size = new System.Drawing.Size(128, 32);
+            this.buttonSortLength.TabIndex = 6;
+            this.buttonSortLength.Text = "Sort (Length)";
+            this.buttonSortLength.UseVisualStyleBackColor = true;
+            this.buttonSortLength.Click += new System.EventHandler(this.buttonSortLength_Click);
             // 
             // ProgramWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(484, 461);
+            this.Controls.Add(this.buttonSortLength);
+            this.Controls.Add(this.buttonSortAZ);
             this.Controls.Add(this.listText);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.buttonExport);
@@ -96,6 +122,8 @@
         private System.Windows.Forms.Button buttonExport;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ListBox listText;
+        private System.Windows.Forms.Button buttonSortAZ;
+        private System.Windows.Forms.Button buttonSortLength;
     }
 }
 

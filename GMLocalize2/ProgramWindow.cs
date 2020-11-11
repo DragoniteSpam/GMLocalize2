@@ -109,5 +109,29 @@ namespace GMLocalize2 {
 
             return single.Split('\n');
         }
+
+        private void buttonSortAZ_Click(object sender, EventArgs e) {
+            string[] items = new string[listText.Items.Count];
+            listText.Items.CopyTo(items, 0);
+            reset();
+            Array.Sort(items, delegate (string a, string b) {
+                return a.CompareTo(b);
+            });
+            foreach (string text in items) {
+                listText.Items.Add(text);
+            }
+        }
+
+        private void buttonSortLength_Click(object sender, EventArgs e) {
+            string[] items = new string[listText.Items.Count];
+            listText.Items.CopyTo(items, 0);
+            reset();
+            Array.Sort(items, delegate (string a, string b) {
+                return a.Length.CompareTo(b.Length);
+            });
+            foreach (string text in items) {
+                listText.Items.Add(text);
+            }
+        }
     }
 }
