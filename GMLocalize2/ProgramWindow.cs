@@ -43,6 +43,7 @@ namespace GMLocalize2 {
                 finder.Filter = "GameMaker Studio 2 projects (*.yyp)|*.yyp";
 
                 if (finder.ShowDialog() == DialogResult.OK) {
+                    reset();
                     extract(finder.FileName, "__");
                 }
             }
@@ -75,6 +76,13 @@ namespace GMLocalize2 {
                     }
                 }
             }
+            foreach (string item in allText) {
+                listText.Items.Add(item);
+            }
+        }
+
+        private void reset() {
+            listText.Items.Clear();
         }
 
         private string[] removeComments(string[] lines) {
