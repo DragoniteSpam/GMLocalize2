@@ -137,5 +137,22 @@ namespace GMLocalize2 {
         private void buttonClear_Click(object sender, EventArgs e) {
             reset();
         }
+
+        private void buttonExport_Click(object sender, EventArgs e) {
+            using (SaveFileDialog finder = new SaveFileDialog()) {
+                finder.Filter = "JavaScript Object Notation (*.json)|*.json";
+
+                if (finder.ShowDialog() == DialogResult.OK) {
+                    string json = "{\n";
+                    json += "    \"Language\": {\n";
+                    foreach (string item in listText.Items) {
+                        json += "        \"" + item + "\": \"" + item + "\",\n";
+                    }
+                    json += "    }\n";
+                    json += "}\n";
+                    File.WriteAllText(finder.FileName, json);
+                }
+            }
+        }
     }
 }
