@@ -29,6 +29,9 @@
             this.listText = new System.Windows.Forms.ListBox();
             this.buttonSortAZ = new System.Windows.Forms.Button();
             this.buttonSortLength = new System.Windows.Forms.Button();
+            this.textBoxSymbol = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.buttonClear = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // buttonOpen
@@ -78,7 +81,7 @@
             // buttonSortAZ
             // 
             this.buttonSortAZ.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonSortAZ.Location = new System.Drawing.Point(12, 417);
+            this.buttonSortAZ.Location = new System.Drawing.Point(146, 418);
             this.buttonSortAZ.Name = "buttonSortAZ";
             this.buttonSortAZ.Size = new System.Drawing.Size(128, 32);
             this.buttonSortAZ.TabIndex = 5;
@@ -89,7 +92,7 @@
             // buttonSortLength
             // 
             this.buttonSortLength.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonSortLength.Location = new System.Drawing.Point(146, 417);
+            this.buttonSortLength.Location = new System.Drawing.Point(280, 418);
             this.buttonSortLength.Name = "buttonSortLength";
             this.buttonSortLength.Size = new System.Drawing.Size(128, 32);
             this.buttonSortLength.TabIndex = 6;
@@ -97,11 +100,46 @@
             this.buttonSortLength.UseVisualStyleBackColor = true;
             this.buttonSortLength.Click += new System.EventHandler(this.buttonSortLength_Click);
             // 
+            // textBoxSymbol
+            // 
+            this.textBoxSymbol.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBoxSymbol.Location = new System.Drawing.Point(372, 70);
+            this.textBoxSymbol.MaxLength = 20;
+            this.textBoxSymbol.Name = "textBoxSymbol";
+            this.textBoxSymbol.Size = new System.Drawing.Size(100, 27);
+            this.textBoxSymbol.TabIndex = 7;
+            this.textBoxSymbol.Text = "__";
+            // 
+            // label2
+            // 
+            this.label2.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(295, 73);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(59, 19);
+            this.label2.TabIndex = 8;
+            this.label2.Text = "Symbol:";
+            // 
+            // buttonClear
+            // 
+            this.buttonClear.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonClear.Location = new System.Drawing.Point(12, 418);
+            this.buttonClear.Name = "buttonClear";
+            this.buttonClear.Size = new System.Drawing.Size(128, 32);
+            this.buttonClear.TabIndex = 9;
+            this.buttonClear.Text = "Clear";
+            this.buttonClear.UseVisualStyleBackColor = true;
+            this.buttonClear.Click += new System.EventHandler(this.buttonClear_Click);
+            // 
             // ProgramWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(484, 461);
+            this.Controls.Add(this.buttonClear);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.textBoxSymbol);
             this.Controls.Add(this.buttonSortLength);
             this.Controls.Add(this.buttonSortAZ);
             this.Controls.Add(this.listText);
@@ -124,6 +162,9 @@
         private System.Windows.Forms.ListBox listText;
         private System.Windows.Forms.Button buttonSortAZ;
         private System.Windows.Forms.Button buttonSortLength;
+        private System.Windows.Forms.TextBox textBoxSymbol;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Button buttonClear;
     }
 }
 

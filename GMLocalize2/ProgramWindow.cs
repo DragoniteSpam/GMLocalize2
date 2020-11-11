@@ -44,7 +44,7 @@ namespace GMLocalize2 {
 
                 if (finder.ShowDialog() == DialogResult.OK) {
                     reset();
-                    extract(finder.FileName, "__");
+                    extract(finder.FileName, textBoxSymbol.Text);
                 }
             }
         }
@@ -132,6 +132,10 @@ namespace GMLocalize2 {
             foreach (string text in items) {
                 listText.Items.Add(text);
             }
+        }
+
+        private void buttonClear_Click(object sender, EventArgs e) {
+            reset();
         }
     }
 }
