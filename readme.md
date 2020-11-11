@@ -4,6 +4,8 @@ Extract text strings for localization from a GameMaker Studio 2 project, and sav
 
 I might make this a proper text localization tool later. Who knows.
 
+In case you're wondering, Version 1 was [this thing](https://github.com/DragoniteSpam/GMLocalize). It worked, kinda.
+
 ### Usage
 
 This tool will pull out any bare string passed as the first parameter to a **localization** function.
