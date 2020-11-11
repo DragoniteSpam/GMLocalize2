@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Text.RegularExpressions;
 
 namespace GMLocalize2 {
     public partial class ProgramWindow : Form {
@@ -41,12 +42,38 @@ namespace GMLocalize2 {
 
                 if (finder.ShowDialog() == DialogResult.OK) {
                     DirectoryInfo root = new DirectoryInfo(Path.GetDirectoryName(finder.FileName));
-                    int i = 0;
+                    Regex re = new Regex(@"([\+\-\*\(\)\^\\\%\[\]\(\)\=\;])");
                     foreach (FileInfo filename in root.GetFiles("*.gml", SearchOption.AllDirectories)) {
-                        /* behave */
+                        string[] stripped = removeComments(File.ReadAllLines(filename.FullName));
+                        
                     }
                 }
             }
+        }
+
+        private string[] removeComments(string[] lines) {
+            // it would probably be faster to supply a single string and remove
+            // block comments before line comments, but unfortunately a block
+            // comment that begins or ends inside a line comment does not count
+            for (int i = 0; i < lines.Length; i++) {
+                for (int j = 1; j < lines[i].Length; j++) {
+                    if (lines[i][j] == '/' && lines[i][j - 1] == '/') {
+                        lines[i] = lines[i].Substring(0, j - 1);
+                        break;
+                    }
+                }
+            }
+            string single = string.Join("\n", lines);
+
+            const string commentStart = "/*";
+            const string commentEnd = "*/";
+            while (single.IndexOf(commentStart) > -1 && single.IndexOf(commentEnd, single.IndexOf(commentStart) + commentStart.Length) > -1) {
+                int start = single.IndexOf(commentStart);
+                int end = single.IndexOf(commentEnd, start + commentStart.Length);
+                single = single.Remove(start, (end + commentEnd.Length) - start);
+            }
+
+            return single.Split('\n');
         }
     }
 }
