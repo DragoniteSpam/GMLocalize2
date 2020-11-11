@@ -148,7 +148,8 @@ namespace GMLocalize2 {
                     foreach (string item in listText.Items) {
                         json += "        \"" + item + "\": \"" + item + "\",\n";
                     }
-                    json += "    }\n";
+                    json = json.Substring(0, json.Length - 2);
+                    json += "\n    }\n";
                     json += "}\n";
                     File.WriteAllText(finder.FileName, json);
                 }
