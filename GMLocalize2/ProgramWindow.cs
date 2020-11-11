@@ -12,6 +12,8 @@ using System.Text.RegularExpressions;
 
 namespace GMLocalize2 {
     public partial class ProgramWindow : Form {
+        private const string CODE_FILE_EXT = "*.gml";
+
         public ProgramWindow() {
             InitializeComponent();
         }
@@ -41,29 +43,33 @@ namespace GMLocalize2 {
                 finder.Filter = "GameMaker Studio 2 projects (*.yyp)|*.yyp";
 
                 if (finder.ShowDialog() == DialogResult.OK) {
-                    DirectoryInfo root = new DirectoryInfo(Path.GetDirectoryName(finder.FileName));
-                    Regex re = new Regex(@"([\+\-\*\(\)\^\\\%\[\]\(\)\=\;\,])");
-                    HashSet<string> allText = new HashSet<string>();
-                    foreach (FileInfo filename in root.GetFiles("*.gml", SearchOption.AllDirectories)) {
-                        string[] stripped = removeComments(File.ReadAllLines(filename.FullName));
-                        bool adding = false;
-                        string text = "";
-                        foreach (string line in stripped) {
-                            string[] tokens = re.Split(line);
-                            for (int i = 0; i < tokens.Length; i++) {
-                                if (adding) {
-                                    text += tokens[i];
-                                    if (text.Length > 1 && tokens[i].Length > 0 && tokens[i].EndsWith("\"")) {
-                                        adding = false;
-                                        allText.Add(text.Substring(1, text.Length - 2));
-                                        text = "";
-                                    }
-                                } else {
-                                    if (tokens[i] == "__") {
-                                        adding = true;
-                                        i++;
-                                    }
-                                }
+                    extract(finder.FileName, "__");
+                }
+            }
+        }
+
+        private void extract(string directory, string localizeFunction) {
+            DirectoryInfo root = new DirectoryInfo(Path.GetDirectoryName(directory));
+            Regex re = new Regex(@"([\+\-\*\(\)\^\\\%\[\]\(\)\=\;\,])");
+            HashSet<string> allText = new HashSet<string>();
+            foreach (FileInfo filename in root.GetFiles(CODE_FILE_EXT, SearchOption.AllDirectories)) {
+                string[] stripped = removeComments(File.ReadAllLines(filename.FullName));
+                bool adding = false;
+                string text = "";
+                foreach (string line in stripped) {
+                    string[] tokens = re.Split(line);
+                    for (int i = 0; i < tokens.Length; i++) {
+                        if (adding) {
+                            text += tokens[i];
+                            if (text.Length > 1 && tokens[i].Length > 0 && tokens[i].EndsWith("\"")) {
+                                adding = false;
+                                allText.Add(text.Substring(1, text.Length - 2));
+                                text = "";
+                            }
+                        } else {
+                            if (tokens[i] == localizeFunction) {
+                                adding = true;
+                                i++;
                             }
                         }
                     }
