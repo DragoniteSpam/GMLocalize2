@@ -39,7 +39,7 @@ namespace GMLocalize2 {
         }
 
         private void textBoxSymbol_TextChanged(object sender, EventArgs e) {
-
+            Program.window.LocalizeSymbol = textBoxSymbol.Text;
         }
     }
 }

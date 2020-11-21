@@ -13,6 +13,9 @@ using System.Text.RegularExpressions;
 namespace GMLocalize2 {
     public partial class ProgramWindow : Form {
         private const string CODE_FILE_EXT = "*.gml";
+        public string LocalizeSymbol {
+            get; set;
+        } = "__";
 
         public ProgramWindow() {
             InitializeComponent();
@@ -44,7 +47,7 @@ namespace GMLocalize2 {
 
                 if (finder.ShowDialog() == DialogResult.OK) {
                     reset();
-                    extract(finder.FileName, textBoxSymbol.Text);
+                    extract(finder.FileName, Program.window.LocalizeSymbol);
                 }
             }
         }
