@@ -12,9 +12,9 @@ namespace GMLocalize2 {
         /// </summary>
         [STAThread]
         static void Main() {
-            window = new ProgramWindow();
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
+            window = new ProgramWindow();
             Application.Run(window);
         }
     }

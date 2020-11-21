@@ -173,5 +173,9 @@ namespace GMLocalize2 {
                 }
             }
         }
+
+        private void buttonSettings_Click(object sender, EventArgs e) {
+            new FormSettings().Show();
+        }
     }
 }

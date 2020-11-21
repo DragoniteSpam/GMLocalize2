@@ -121,6 +121,7 @@
             this.buttonSettings.TabIndex = 10;
             this.buttonSettings.Text = "Settings";
             this.buttonSettings.UseVisualStyleBackColor = true;
+            this.buttonSettings.Click += new System.EventHandler(this.buttonSettings_Click);
             // 
             // ProgramWindow
             // 
