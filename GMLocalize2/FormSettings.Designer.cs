@@ -31,6 +31,7 @@ namespace GMLocalize2 {
             this.buttonLanguageRemove = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.textBoxLanguageName = new System.Windows.Forms.TextBox();
+            this.buttonClose = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label2
@@ -111,11 +112,23 @@ namespace GMLocalize2 {
             this.textBoxLanguageName.TabIndex = 15;
             this.textBoxLanguageName.TextChanged += new System.EventHandler(this.textBoxLanguageName_TextChanged);
             // 
+            // buttonClose
+            // 
+            this.buttonClose.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonClose.Location = new System.Drawing.Point(104, 360);
+            this.buttonClose.Name = "buttonClose";
+            this.buttonClose.Size = new System.Drawing.Size(176, 32);
+            this.buttonClose.TabIndex = 17;
+            this.buttonClose.Text = "Close";
+            this.buttonClose.UseVisualStyleBackColor = true;
+            this.buttonClose.Click += new System.EventHandler(this.buttonClose_Click);
+            // 
             // FormSettings
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(384, 361);
+            this.ClientSize = new System.Drawing.Size(384, 404);
+            this.Controls.Add(this.buttonClose);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.textBoxLanguageName);
             this.Controls.Add(this.buttonLanguageAdd);
@@ -139,5 +152,6 @@ namespace GMLocalize2 {
         private System.Windows.Forms.Button buttonLanguageRemove;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox textBoxLanguageName;
+        private System.Windows.Forms.Button buttonClose;
     }
 }
