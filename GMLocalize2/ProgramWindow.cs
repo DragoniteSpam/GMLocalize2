@@ -144,12 +144,16 @@ namespace GMLocalize2 {
 
                 if (finder.ShowDialog() == DialogResult.OK) {
                     string json = "{\n";
-                    json += "    \"Language\": {\n";
+                    json += "    \"available\": {\n";
+                    json += "        \"name\": \"English\",\n";
+                    json += "        \"strings\": {\n";
                     foreach (string item in listText.Items) {
-                        json += "        \"" + item + "\": \"" + item + "\",\n";
+                        json += "            \"" + item + "\": \"" + item + "\",\n";
                     }
                     json = json.Substring(0, json.Length - 2);
-                    json += "\n    }\n";
+                    json += "\n";
+                    json += "        }\n";
+                    json += "    }\n";
                     json += "}\n";
                     File.WriteAllText(finder.FileName, json);
                 }
