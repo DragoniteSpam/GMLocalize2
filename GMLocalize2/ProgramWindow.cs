@@ -140,22 +140,33 @@ namespace GMLocalize2 {
 
         private void buttonExport_Click(object sender, EventArgs e) {
             using (SaveFileDialog finder = new SaveFileDialog()) {
-                finder.Filter = "JavaScript Object Notation (*.json)|*.json";
+                finder.Filter = "JSON or CSV|*.csv;*.json|JavaScript Object Notation (*.json)|*.json|Comma-Separated Value sheets (*.csv)|*.csv";
 
                 if (finder.ShowDialog() == DialogResult.OK) {
-                    string json = "{\n";
-                    json += "    \"available\": {\n";
-                    json += "        \"name\": \"English\",\n";
-                    json += "        \"strings\": {\n";
-                    foreach (string item in listText.Items) {
-                        json += "            \"" + item + "\": \"" + item + "\",\n";
+                    switch (new FileInfo(finder.FileName).Extension.ToLower()) {
+                        case ".json":
+                            string json = "{\n";
+                            json += "    \"available\": {\n";
+                            json += "        \"name\": \"English\",\n";
+                            json += "        \"strings\": {\n";
+                            foreach (string item in listText.Items) {
+                                json += "            \"" + item + "\": \"" + item + "\",\n";
+                            }
+                            json = json.Substring(0, json.Length - 2);
+                            json += "\n";
+                            json += "        }\n";
+                            json += "    }\n";
+                            json += "}\n";
+                            File.WriteAllText(finder.FileName, json);
+                            break;
+                        case ".csv":
+                            string csv = "def,\"English\"\n";
+                            foreach (string item in listText.Items) {
+                                csv += "\"" + item + "\",\"" + item + "\"\n";
+                            }
+                            File.WriteAllText(finder.FileName, csv);
+                            break;
                     }
-                    json = json.Substring(0, json.Length - 2);
-                    json += "\n";
-                    json += "        }\n";
-                    json += "    }\n";
-                    json += "}\n";
-                    File.WriteAllText(finder.FileName, json);
                 }
             }
         }
