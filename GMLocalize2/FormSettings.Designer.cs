@@ -62,6 +62,8 @@ namespace GMLocalize2 {
             this.listLanguageNames.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.listLanguageNames.FormattingEnabled = true;
             this.listLanguageNames.ItemHeight = 19;
+            this.listLanguageNames.Items.AddRange(new object[] {
+            "English"});
             this.listLanguageNames.Location = new System.Drawing.Point(16, 45);
             this.listLanguageNames.Name = "listLanguageNames";
             this.listLanguageNames.Size = new System.Drawing.Size(356, 232);

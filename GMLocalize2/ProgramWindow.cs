@@ -17,8 +17,13 @@ namespace GMLocalize2 {
             get; set;
         } = "__";
 
+        public List<string> AllLanguages {
+            get; set;
+        } = new List<string>();
+
         public ProgramWindow() {
             InitializeComponent();
+            AllLanguages.Add("English");
         }
 
         private void Form1_Load(object sender, EventArgs e) {

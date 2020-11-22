@@ -23,7 +23,9 @@ namespace GMLocalize2 {
         }
 
         private void listText_SelectedIndexChanged(object sender, EventArgs e) {
-
+            if (listLanguageNames.SelectedIndex > -1) {
+                textBoxLanguageName.Text = Program.window.AllLanguages[listLanguageNames.SelectedIndex];
+            }
         }
 
         private void buttonLanguageAdd_Click(object sender, EventArgs e) {
@@ -35,7 +37,8 @@ namespace GMLocalize2 {
         }
 
         private void textBoxLanguageName_TextChanged(object sender, EventArgs e) {
-
+            Program.window.AllLanguages[listLanguageNames.SelectedIndex]  = textBoxLanguageName.Text;
+            listLanguageNames.Items[listLanguageNames.SelectedIndex] = textBoxLanguageName.Text;
         }
 
         private void textBoxSymbol_TextChanged(object sender, EventArgs e) {
@@ -43,7 +46,7 @@ namespace GMLocalize2 {
         }
 
         private void buttonClose_Click(object sender, EventArgs e) {
-            this.Close();
+            Close();
         }
     }
 }
