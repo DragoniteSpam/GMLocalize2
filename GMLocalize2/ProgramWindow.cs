@@ -173,16 +173,16 @@ namespace GMLocalize2 {
                             File.WriteAllText(finder.FileName, json);
                             break;
                         case ".csv":
-                            string csv = "def,\"";
+                            string csv = "\"default\",";
                             foreach (string lang in AllLanguages) {
-                                csv += lang + ",";
+                                csv += "\"" + lang + "\",";
                             }
                             csv = csv.Substring(0, csv.Length - 1);
-                            csv += "\"\n";
+                            csv += "\n";
                             foreach (string item in listText.Items) {
-                                csv += "\"" + item + "\",\"" + item  + ",";
+                                csv += "\"" + item + "\",\"" + item  + "\",";
                                 for (int i = 1; i < AllLanguages.Count; i++) {
-                                    csv += "";
+                                    csv += "\"\"";
                                     if (i < AllLanguages.Count - 1) {
                                         csv += ",";
                                     }
