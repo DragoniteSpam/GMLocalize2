@@ -154,23 +154,40 @@ namespace GMLocalize2 {
                     switch (new FileInfo(finder.FileName).Extension.ToLower()) {
                         case ".json":
                             string json = "{\n";
-                            json += "    \"available\": {\n";
-                            json += "        \"name\": \"English\",\n";
-                            json += "        \"strings\": {\n";
-                            foreach (string item in listText.Items) {
-                                json += "            \"" + item + "\": \"" + item + "\",\n";
+                            json += "    \"available\": [\n";
+                            foreach (string language in AllLanguages) {
+                                json += "        {\n";
+                                json += "            \"name\": \"" + language + "\",\n";
+                                json += "            \"strings\": {\n";
+                                foreach (string item in listText.Items) {
+                                    json += "                \"" + item + "\": \"" + item + "\",\n";
+                                }
+                                json = json.Substring(0, json.Length - 2);
+                                json += "\n";
+                                json += "            }\n";
+                                json += "        },\n";
                             }
-                            json = json.Substring(0, json.Length - 2);
-                            json += "\n";
-                            json += "        }\n";
-                            json += "    }\n";
+                            json = json.Substring(0, json.Length - 2) + "\n";
+                            json += "    ]\n";
                             json += "}\n";
                             File.WriteAllText(finder.FileName, json);
                             break;
                         case ".csv":
-                            string csv = "def,\"English\"\n";
+                            string csv = "def,\"";
+                            foreach (string lang in AllLanguages) {
+                                csv += lang + ",";
+                            }
+                            csv = csv.Substring(0, csv.Length - 1);
+                            csv += "\"\n";
                             foreach (string item in listText.Items) {
-                                csv += "\"" + item + "\",\"" + item + "\"\n";
+                                csv += "\"" + item + "\",\"" + item  + ",";
+                                for (int i = 1; i < AllLanguages.Count; i++) {
+                                    csv += "";
+                                    if (i < AllLanguages.Count - 1) {
+                                        csv += ",";
+                                    }
+                                }
+                                csv += "\n";
                             }
                             File.WriteAllText(finder.FileName, csv);
                             break;
