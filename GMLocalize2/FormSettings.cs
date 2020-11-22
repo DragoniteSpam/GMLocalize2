@@ -29,16 +29,27 @@ namespace GMLocalize2 {
         }
 
         private void buttonLanguageAdd_Click(object sender, EventArgs e) {
+            int index = 0;
+            while (Program.window.AllLanguages.Contains("Language" + index)) {
+                index++;
+            }
 
+            Program.window.AllLanguages.Add("Language" + index);
+            listLanguageNames.Items.Add("Language" + index);
         }
 
         private void buttonLanguageRemove_Click(object sender, EventArgs e) {
-
+            if (listLanguageNames.SelectedIndex > -1) {
+                Program.window.AllLanguages.RemoveAt(listLanguageNames.SelectedIndex);
+                listLanguageNames.Items.RemoveAt(listLanguageNames.SelectedIndex);
+            }
         }
 
         private void textBoxLanguageName_TextChanged(object sender, EventArgs e) {
-            Program.window.AllLanguages[listLanguageNames.SelectedIndex]  = textBoxLanguageName.Text;
-            listLanguageNames.Items[listLanguageNames.SelectedIndex] = textBoxLanguageName.Text;
+            if (listLanguageNames.SelectedIndex > -1) {
+                Program.window.AllLanguages[listLanguageNames.SelectedIndex] = textBoxLanguageName.Text;
+                listLanguageNames.Items[listLanguageNames.SelectedIndex] = textBoxLanguageName.Text;
+            }
         }
 
         private void textBoxSymbol_TextChanged(object sender, EventArgs e) {
