@@ -48,5 +48,9 @@ namespace GMLocalize2 {
         private void buttonClose_Click(object sender, EventArgs e) {
             Close();
         }
+
+        private void FormSettings_Load(object sender, EventArgs e) {
+
+        }
     }
 }

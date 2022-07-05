@@ -111,8 +111,10 @@ namespace GMLocalize2 {
             this.Controls.Add(this.buttonLanguageAdd);
             this.Controls.Add(this.buttonLanguageRemove);
             this.Controls.Add(this.listLanguageNames);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "FormSettings";
             this.Text = "GMLocalize Settings";
+            this.Load += new System.EventHandler(this.FormSettings_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
