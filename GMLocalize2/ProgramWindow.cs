@@ -51,18 +51,18 @@ namespace GMLocalize2 {
                 finder.Filter = "GameMaker Studio 2 projects (*.yyp)|*.yyp";
 
                 if (finder.ShowDialog() == DialogResult.OK) {
-                    reset();
-                    extract(finder.FileName, Program.window.LocalizeSymbol);
+                    Reset();
+                    Extract(finder.FileName, Program.window.LocalizeSymbol);
                 }
             }
         }
 
-        private void extract(string directory, string localizeFunction) {
+        private void Extract(string directory, string localizeFunction) {
             DirectoryInfo root = new DirectoryInfo(Path.GetDirectoryName(directory));
             Regex re = new Regex(@"([\+\-\*\(\)\^\\\%\[\]\(\)\=\;\,])");
             HashSet<string> allText = new HashSet<string>();
             foreach (FileInfo filename in root.GetFiles(CODE_FILE_EXT, SearchOption.AllDirectories)) {
-                string[] stripped = removeComments(File.ReadAllLines(filename.FullName));
+                string[] stripped = RemoveComments(File.ReadAllLines(filename.FullName));
                 bool adding = false;
                 string text = "";
                 foreach (string line in stripped) {
@@ -89,11 +89,11 @@ namespace GMLocalize2 {
             }
         }
 
-        private void reset() {
+        private void Reset() {
             listText.Items.Clear();
         }
 
-        private string[] removeComments(string[] lines) {
+        private string[] RemoveComments(string[] lines) {
             // it would probably be faster to supply a single string and remove
             // block comments before line comments, but unfortunately a block
             // comment that begins or ends inside a line comment does not count
@@ -121,7 +121,7 @@ namespace GMLocalize2 {
         private void buttonSortAZ_Click(object sender, EventArgs e) {
             string[] items = new string[listText.Items.Count];
             listText.Items.CopyTo(items, 0);
-            reset();
+            Reset();
             Array.Sort(items, delegate (string a, string b) {
                 return a.CompareTo(b);
             });
@@ -133,7 +133,7 @@ namespace GMLocalize2 {
         private void buttonSortLength_Click(object sender, EventArgs e) {
             string[] items = new string[listText.Items.Count];
             listText.Items.CopyTo(items, 0);
-            reset();
+            Reset();
             Array.Sort(items, delegate (string a, string b) {
                 return a.Length.CompareTo(b.Length);
             });
@@ -143,7 +143,7 @@ namespace GMLocalize2 {
         }
 
         private void buttonClear_Click(object sender, EventArgs e) {
-            reset();
+            Reset();
         }
 
         private void buttonExport_Click(object sender, EventArgs e) {
