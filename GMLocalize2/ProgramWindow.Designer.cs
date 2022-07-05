@@ -32,6 +32,8 @@
             this.buttonSortLength = new System.Windows.Forms.Button();
             this.buttonClear = new System.Windows.Forms.Button();
             this.buttonSettings = new System.Windows.Forms.Button();
+            this.label2 = new System.Windows.Forms.Label();
+            this.textBoxSymbol = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // buttonOpen
@@ -73,9 +75,9 @@
             this.listText.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.listText.FormattingEnabled = true;
             this.listText.ItemHeight = 19;
-            this.listText.Location = new System.Drawing.Point(12, 104);
+            this.listText.Location = new System.Drawing.Point(12, 142);
             this.listText.Name = "listText";
-            this.listText.Size = new System.Drawing.Size(396, 308);
+            this.listText.Size = new System.Drawing.Size(396, 270);
             this.listText.TabIndex = 4;
             this.listText.SelectedIndexChanged += new System.EventHandler(this.listBox1_SelectedIndexChanged);
             // 
@@ -123,11 +125,35 @@
             this.buttonSettings.UseVisualStyleBackColor = true;
             this.buttonSettings.Click += new System.EventHandler(this.buttonSettings_Click);
             // 
+            // label2
+            // 
+            this.label2.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(13, 112);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(149, 19);
+            this.label2.TabIndex = 12;
+            this.label2.Text = "Localization Function:";
+            // 
+            // textBoxSymbol
+            // 
+            this.textBoxSymbol.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBoxSymbol.Location = new System.Drawing.Point(253, 109);
+            this.textBoxSymbol.MaxLength = 20;
+            this.textBoxSymbol.Name = "textBoxSymbol";
+            this.textBoxSymbol.Size = new System.Drawing.Size(155, 27);
+            this.textBoxSymbol.TabIndex = 11;
+            this.textBoxSymbol.Text = "__";
+            this.textBoxSymbol.TextChanged += new System.EventHandler(this.textBoxSymbol_TextChanged);
+            // 
             // ProgramWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(419, 461);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.textBoxSymbol);
             this.Controls.Add(this.buttonSettings);
             this.Controls.Add(this.buttonClear);
             this.Controls.Add(this.buttonSortLength);
@@ -156,6 +182,8 @@
         private System.Windows.Forms.Button buttonSortLength;
         private System.Windows.Forms.Button buttonClear;
         private System.Windows.Forms.Button buttonSettings;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.TextBox textBoxSymbol;
     }
 }
 

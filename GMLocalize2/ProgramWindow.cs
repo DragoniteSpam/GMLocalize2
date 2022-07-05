@@ -38,10 +38,6 @@ namespace GMLocalize2 {
 
         }
 
-        private void label2_Click(object sender, EventArgs e) {
-
-        }
-
         private void listBox1_SelectedIndexChanged(object sender, EventArgs e) {
 
         }
@@ -55,67 +51,6 @@ namespace GMLocalize2 {
                     Extract(finder.FileName, Program.window.LocalizeSymbol);
                 }
             }
-        }
-
-        private void Extract(string directory, string localizeFunction) {
-            DirectoryInfo root = new DirectoryInfo(Path.GetDirectoryName(directory));
-            Regex re = new Regex(@"([\+\-\*\(\)\^\\\%\[\]\(\)\=\;\,])");
-            HashSet<string> allText = new HashSet<string>();
-            foreach (FileInfo filename in root.GetFiles(CODE_FILE_EXT, SearchOption.AllDirectories)) {
-                string[] stripped = RemoveComments(File.ReadAllLines(filename.FullName));
-                bool adding = false;
-                string text = "";
-                foreach (string line in stripped) {
-                    string[] tokens = re.Split(line);
-                    for (int i = 0; i < tokens.Length; i++) {
-                        if (adding) {
-                            text += tokens[i];
-                            if (text.Length > 1 && tokens[i].Length > 0 && tokens[i].EndsWith("\"")) {
-                                adding = false;
-                                allText.Add(text.Substring(1, text.Length - 2));
-                                text = "";
-                            }
-                        } else {
-                            if (tokens[i].Trim() == localizeFunction) {
-                                adding = true;
-                                i++;
-                            }
-                        }
-                    }
-                }
-            }
-            foreach (string item in allText) {
-                listText.Items.Add(item);
-            }
-        }
-
-        private void Reset() {
-            listText.Items.Clear();
-        }
-
-        private string[] RemoveComments(string[] lines) {
-            // it would probably be faster to supply a single string and remove
-            // block comments before line comments, but unfortunately a block
-            // comment that begins or ends inside a line comment does not count
-            for (int i = 0; i < lines.Length; i++) {
-                for (int j = 1; j < lines[i].Length; j++) {
-                    if (lines[i][j] == '/' && lines[i][j - 1] == '/') {
-                        lines[i] = lines[i].Substring(0, j - 1);
-                        break;
-                    }
-                }
-            }
-            string single = string.Join("\n", lines);
-
-            const string commentStart = "/*";
-            const string commentEnd = "*/";
-            while (single.IndexOf(commentStart) > -1 && single.IndexOf(commentEnd, single.IndexOf(commentStart) + commentStart.Length) > -1) {
-                int start = single.IndexOf(commentStart);
-                int end = single.IndexOf(commentEnd, start + commentStart.Length);
-                single = single.Remove(start, (end + commentEnd.Length) - start);
-            }
-
-            return single.Split('\n');
         }
 
         private void buttonSortAZ_Click(object sender, EventArgs e) {
@@ -196,8 +131,76 @@ namespace GMLocalize2 {
             }
         }
 
+        private void textBoxSymbol_TextChanged(object sender, EventArgs e) {
+            Program.window.LocalizeSymbol = textBoxSymbol.Text;
+        }
+
         private void buttonSettings_Click(object sender, EventArgs e) {
             new FormSettings().Show();
         }
+
+        #region Actions
+        private void Extract(string directory, string localizeFunction) {
+            DirectoryInfo root = new DirectoryInfo(Path.GetDirectoryName(directory));
+            Regex re = new Regex(@"([\+\-\*\(\)\^\\\%\[\]\(\)\=\;\,])");
+            HashSet<string> allText = new HashSet<string>();
+            foreach (FileInfo filename in root.GetFiles(CODE_FILE_EXT, SearchOption.AllDirectories)) {
+                string[] stripped = RemoveComments(File.ReadAllLines(filename.FullName));
+                bool adding = false;
+                string text = "";
+                foreach (string line in stripped) {
+                    string[] tokens = re.Split(line);
+                    for (int i = 0; i < tokens.Length; i++) {
+                        if (adding) {
+                            text += tokens[i];
+                            if (text.Length > 1 && tokens[i].Length > 0 && tokens[i].EndsWith("\"")) {
+                                adding = false;
+                                allText.Add(text.Substring(1, text.Length - 2));
+                                text = "";
+                            }
+                        } else {
+                            if (tokens[i].Trim() == localizeFunction) {
+                                adding = true;
+                                i++;
+                            }
+                        }
+                    }
+                }
+            }
+
+            foreach (string item in allText) {
+                listText.Items.Add(item);
+            }
+        }
+
+        private void Reset() {
+            listText.Items.Clear();
+        }
+
+        private string[] RemoveComments(string[] lines) {
+            // it would probably be faster to supply a single string and remove
+            // block comments before line comments, but unfortunately a block
+            // comment that begins or ends inside a line comment does not count
+            for (int i = 0; i < lines.Length; i++) {
+                for (int j = 1; j < lines[i].Length; j++) {
+                    if (lines[i][j] == '/' && lines[i][j - 1] == '/') {
+                        lines[i] = lines[i].Substring(0, j - 1);
+                        break;
+                    }
+                }
+            }
+            string single = string.Join("\n", lines);
+
+            const string commentStart = "/*";
+            const string commentEnd = "*/";
+            while (single.IndexOf(commentStart) > -1 && single.IndexOf(commentEnd, single.IndexOf(commentStart) + commentStart.Length) > -1) {
+                int start = single.IndexOf(commentStart);
+                int end = single.IndexOf(commentEnd, start + commentStart.Length);
+                single = single.Remove(start, (end + commentEnd.Length) - start);
+            }
+
+            return single.Split('\n');
+        }
+        #endregion
     }
 }
